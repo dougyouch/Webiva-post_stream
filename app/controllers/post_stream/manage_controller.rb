@@ -62,7 +62,8 @@ class PostStream::ManageController < ModuleController
 
     active_table_action 'post_stream' do |act,ids|
       case act
-      when 'delete': PostStreamPost.destroy(ids)
+      when 'delete'
+        PostStreamPost.destroy(ids)
       when 'flag'
         PostStreamPost.find(:all, :conditions => {:id => ids}).each { |post| post.update_attributes(:flagged => true) }
       when 'unflag'
